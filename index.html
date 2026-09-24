@@ -223,12 +223,10 @@
   }
 
   .cta{
-    appearance: none;
-    -webkit-appearance: none;
-    border: none;
-    cursor: pointer;
-    margin-top: 18px;
-    display:flex; align-items:center; justify-content:center; gap:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
     width:100%;
     padding: 15px 18px;
     border-radius: 16px;
@@ -239,6 +237,7 @@
     font-size: 14.5px;
     letter-spacing: 0.01em;
     text-decoration:none;
+    margin-top: 18px;
     box-shadow:
       0 12px 28px -8px rgba(0, 114, 255, 0.6),
       0 1px 0 rgba(255, 255, 255, 0.3) inset;
@@ -325,46 +324,18 @@
         </a>
       </div>
 
-      <button type="button" class="cta" id="saveContactBtn">
+      <!-- Pure HTML vCard trigger (No JavaScript) -->
+      <a class="cta" href="data:text/vcard;charset=utf-8;base64,QkVHSU46VkNBUkQNClZFUlNJT046My4wDQpOOkphZ3dhbmk7TWVodWw7OzsNCkZOOk1laHVsIEphZ3dhbmkNClRJVExFOkZpbnRlY2ggTWFya2V0ZXIgJiBQYXJ0LXRpbWUgVHJhZGVyDQpURUw7VFlQRT1DRUxMOis5MTg4NjY0NjUwNDgNCkVNQUlMOm1laHVsLmRpZ2l0YWxtQGdtYWlsLmNvbQ0KRU5EOlZDQVJE">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
           <circle cx="12" cy="7" r="4"/>
           <path d="M19 8v6M22 11h-6"/>
         </svg>
         Save Contact
-      </button>
+      </a>
 
       <p class="footer">FINTECH &bull; QUANT &bull; GROWTH MARKETING</p>
     </div>
   </main>
-
-  <script>
-    document.getElementById('saveContactBtn').addEventListener('click', function () {
-      var vcard = 'BEGIN:VCARD\r\n' +
-        'VERSION:3.0\r\n' +
-        'N:Jagwani;Mehul;;;\r\n' +
-        'FN:Mehul Jagwani\r\n' +
-        'TITLE:Fintech Marketer & Part-time Trader\r\n' +
-        'TEL;TYPE=CELL:+918866465048\r\n' +
-        'EMAIL:mehul.digitalm@gmail.com\r\n' +
-        'END:VCARD\r\n';
-
-      var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
-      if (isIOS) {
-        window.location.href = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(vcard);
-      } else {
-        var blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-        var url = URL.createObjectURL(blob);
-        var a = document.createElement('a');
-        a.href = url;
-        a.download = 'Mehul_Jagwani.vcf';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
-      }
-    });
-  </script>
 </body>
 </html>
